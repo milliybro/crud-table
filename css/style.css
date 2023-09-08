@@ -1,0 +1,24 @@
+body{
+   background: url('../image/light-bg.avif');
+}
+
+.type-position{
+   background-color: coral !important;
+   color: #fff !important;
+}
+
+.type-married{
+   background-color: blue!important;
+   color: #fff !important;
+}
+
+.type-sort{
+   background-color: green !important;
+   color: #fff !important;
+}
+
+.modal-content{
+   background-color: #fff !important;
+   opacity: 0.65;
+}
+
