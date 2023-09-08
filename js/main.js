@@ -8,6 +8,7 @@ const modalOpenBtn = document.querySelector(".modal-open-btn");
 const modalSubmitBtn = document.querySelector(".modal-submit-btn");
 const studentSearchInput = document.querySelector(".student-search-input");
 const typeMarried = document.querySelector(".type-married")
+const sorted = document.querySelector(".type-sort")
 
 
 let studentsJson = localStorage.getItem("students");
@@ -17,6 +18,7 @@ let selected = null;
 let search =""
 let positiontype = "Position"
 let married ="isMarried"
+let sort = "Sort";
 
 typeMarried.innerHTML = "<option>isMarried</option>";
 
@@ -135,6 +137,28 @@ function getStudents() {
     results = results.filter((student) => student.isMarried ? "Yes" : "No" === married);
   }
 
+  if (sort !== "Sort") {
+    results.sort((a, b) => {
+      let nameA;
+      let nameB;
+      if (sort === "1") {
+        nameA = a.salary;
+        nameB = b.salary;
+      } else {
+        nameB = a.salary;
+        nameA = b.salary;
+      }
+
+      if (nameA < nameB) {
+        return -1;
+      } else if (nameA > nameB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
   if (results.length !== 0) {
     studentTableBody.innerHTML = "";
     results.map((student, i) => {
@@ -221,4 +245,10 @@ typeMarried.addEventListener("change", function () {
   married = this.value;
   console.log(typeMarried);
   getStudents();
+});
+
+sorted.addEventListener("change", function () {
+  sort = this.value;
+  getStudents();
+  console.log(sort);
 });
